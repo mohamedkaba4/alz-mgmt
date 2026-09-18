@@ -18,7 +18,7 @@ Replacements are denoted by the dollar-dollar curly braces token (e.g. $${starte
 You can define the Azure regions to use throughout the configuration.
 The first location will be used as the primary location, the second as the secondary location, and so on.
 */
-starter_locations = ["<region-1>"]
+starter_locations = ["eastus"]
 
 /*
 --- Custom Replacements ---
@@ -33,7 +33,7 @@ custom_replacements = {
   */
   names = {
     # Defender email security contact
-    defender_email_security_contact = "replace_me@replace_me.com"
+    defender_email_security_contact = "kabax45@gmail.com"
 
     # Resource provisioning global connectivity
     #
@@ -49,10 +49,10 @@ custom_replacements = {
     ddos_protection_plan_enabled = false
 
     # Resource provisioning primary connectivity
-    primary_firewall_enabled                              = true
+    primary_firewall_enabled                              = false
     primary_firewall_sku_tier                             = "Basic"
     primary_virtual_network_gateway_express_route_enabled = false
-    primary_virtual_network_gateway_vpn_enabled           = true
+    primary_virtual_network_gateway_vpn_enabled           = false
     primary_private_dns_zones_enabled                     = false
     primary_private_dns_auto_registration_zone_enabled    = false
     primary_private_dns_resolver_enabled                  = false
@@ -206,20 +206,7 @@ management_group_settings = {
     alz = {
       policy_assignments = {
         Deploy-MDFC-Config-H224 = {
-          parameters = {
-            enableAscForServers                         = "DeployIfNotExists"
-            enableAscForServersVulnerabilityAssessments = "DeployIfNotExists"
-            enableAscForSql                             = "DeployIfNotExists"
-            enableAscForAppServices                     = "DeployIfNotExists"
-            enableAscForStorage                         = "DeployIfNotExists"
-            enableAscForContainers                      = "DeployIfNotExists"
-            enableAscForKeyVault                        = "DeployIfNotExists"
-            enableAscForSqlOnVm                         = "DeployIfNotExists"
-            enableAscForArm                             = "DeployIfNotExists"
-            enableAscForOssDb                           = "DeployIfNotExists"
-            enableAscForCosmosDbs                       = "DeployIfNotExists"
-            enableAscForCspm                            = "DeployIfNotExists"
-          }
+          creation_enabled = false
         }
       }
     }
