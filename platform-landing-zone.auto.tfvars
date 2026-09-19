@@ -197,10 +197,10 @@ management_group_settings = {
       management_group_name = "management"
     }
     # Uncomment the security block below when you have a dedicated security subscription
-    # security = {
-    #   subscription_id       = "$${subscription_id_security}"
-    #   management_group_name = "security"
-    # }
+    security = {
+      subscription_id       = "$${subscription_id_security}"
+      management_group_name = "security"
+    }
   }
   policy_assignments_to_modify = {
     alz = {
