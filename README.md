@@ -1,48 +1,50 @@
-# Azure Landing Zones Accelerator Starter Module for Terraform - Azure Verified Modules Complete Multi-Region
+# Azure Landing Zone Management Platform
 
-This module is part of the Azure Landing Zones Accelerator solution. It is a complete multi-region implementation of the Azure Landing Zones Platform Landing Zone for Terraform.
+This repository contains the Terraform configuration used to deploy and manage the management layer of Azure Landing Zone.
 
-It deploys a hub and spoke virtual network or Virtual WAN architecture across multiple regions.
+The goal of this project is to form a governed Azure foundation with centralized management, policy, monitoring, and subscription organization using Infrastructure as Code.
 
-The module deploys the following resources:
+## What This Repository Deploys
+
+This repository is focused on the management and governance aspect of the Azure Landing Zone, including:
 
 - Management group hierarchy
-- Azure Policy definitions and assignments
-- Role definitions
-- Management resources, including Log Analytics workspace and Automation account
-- Hub and spoke virtual network or Virtual WAN architecture across multiple regions
-- DDOS protection plan
-- Private DNS zones
+- Azure Policy assignments and governance controls
+- Role-Based Access Control (RBAC) configuration
+- Management subscription resources
+- Log Analytics workspace
+- Azure Automation resources
+- Centralized monitoring and operational management
+- Supporting platform configuration required by the Azure Landing Zone
 
-## Usage
+## Architecture
 
-The module is intended to be used with the [Azure Landing Zones Accelerator](https://aka.ms/alz/acc). Head over there to get started.
+The environment follows the Azure Landing Zone design principles and separates platform tasks across dedicated subscriptions and management groups.
 
->NOTE: The module can be used independently if needed. Example `tfvars` files can be found in the `examples` directory for that use case.
+The management subscription is used for centralized operational services like:
 
-### Running Directly
+- Logging
+- Monitoring
+- Automation
+- Governance
+- Policy enforcement
 
-#### Run the local examples
+Workload subscriptions are placed under the appropriate management groups so policies and access controls can be inherited consistently.
 
-Create a `terraform.tfvars` file in the root of the module directory with the following content, replacing the placeholders with the actual values:
+## Infrastructure as Code
 
-```hcl
-starter_locations            = ["uksouth", "ukwest"]
-subscription_id_connectivity = "00000000-0000-0000-0000-000000000000"
-subscription_id_identity     = "00000000-0000-0000-0000-000000000000"
-subscription_id_management   = "00000000-0000-0000-0000-000000000000"
-```
+Terraform is used to provision and manage the environment.
 
-##### Hub and Spoke Virtual Networks Multi Region
+The deployment uses Azure Landing Zone accelerator components and Azure Verified Modules where appropriate, while environment-specific configuration is maintained in this repository.
 
-```powershell
+Example workflow:
+
+```bash
 terraform init
-terraform apply -var-file ./examples/full-multi-region/hub-and-spoke-vnet.tfvars
-```
+terraform validate
 
-##### Virtual WAN Multi Region
+terraform plan \
+  -var-file="prod.tfvars"
 
-```powershell
-terraform init
-terraform apply -var-file ./examples/full-multi-region/virtual-wan.tfvars
-```
+terraform apply \
+  -var-file="prod.tfvars"
