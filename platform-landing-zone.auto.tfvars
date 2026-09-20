@@ -201,6 +201,11 @@ management_group_settings = {
       subscription_id       = "$${subscription_id_security}"
       management_group_name = "security"
     }
+
+    prod = {
+      subscription_id       = "2df97227-9b74-448e-8bc9-aa5cb239"
+      management_group_name = "online"
+    }
   }
   policy_assignments_to_modify = {
     alz = {
